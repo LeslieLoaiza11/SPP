@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a34097bcd8a455e9e2496b463dfda62" Name="Diagram1" ZoomLevel="204" >
+        <EntityTypeShape EntityType="SPPModel.Student" Width="1.5" PointX="6.125" PointY="5.125" />
+        <EntityTypeShape EntityType="SPPModel.Project" Width="1.5" PointX="10.625" PointY="5.125" />
+        <EntityTypeShape EntityType="SPPModel.Professor" Width="1.5" PointX="6.125" PointY="1.5" />
+        <EntityTypeShape EntityType="SPPModel.Record" Width="1.5" PointX="10.625" PointY="10.5" />
+        <EntityTypeShape EntityType="SPPModel.Document" Width="1.5" PointX="12.875" PointY="10.5" />
+        <EntityTypeShape EntityType="SPPModel.Report" Width="1.5" PointX="15.625" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPModel.Participation" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="SPPModel.Election" Width="1.5" PointX="8.375" PointY="9.875" />
+        <EntityTypeShape EntityType="SPPModel.LinkedOrganization" Width="1.5" PointX="8.375" PointY="1.125" />
+        <EntityTypeShape EntityType="SPPModel.ProjectManager" Width="1.5" PointX="12.875" PointY="6.125" />
+        <AssociationConnector Association="SPPModel.StudentParticipation" />
+        <AssociationConnector Association="SPPModel.StudentElection" />
+        <AssociationConnector Association="SPPModel.ParticipationProject" />
+        <AssociationConnector Association="SPPModel.ElectionProject" />
+        <AssociationConnector Association="SPPModel.ProjectProjectManager" />
+        <AssociationConnector Association="SPPModel.LinkedOrganizationProject" />
+        <AssociationConnector Association="SPPModel.ProfessorParticipation" />
+        <AssociationConnector Association="SPPModel.RecordDocument" />
+        <AssociationConnector Association="SPPModel.ParticipationRecord" />
+        <AssociationConnector Association="SPPModel.LinkedOrganizationProjectManager" />
+        <InheritanceConnector EntityType="SPPModel.Report" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

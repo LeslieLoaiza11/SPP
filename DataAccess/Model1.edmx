@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SPPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SPPModelStoreContainer">
+    <EntitySet Name="StudentSet" EntityType="SPPModel.Store.StudentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectSet" EntityType="SPPModel.Store.ProjectSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfessorSet" EntityType="SPPModel.Store.ProfessorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecordSet" EntityType="SPPModel.Store.RecordSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DocumentSet" EntityType="SPPModel.Store.DocumentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParticipationSet" EntityType="SPPModel.Store.ParticipationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ElectionSet" EntityType="SPPModel.Store.ElectionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LinkedOrganizationSet" EntityType="SPPModel.Store.LinkedOrganizationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectManagerSet" EntityType="SPPModel.Store.ProjectManagerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DocumentSet_Report" EntityType="SPPModel.Store.DocumentSet_Report" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="StudentParticipation" Association="SPPModel.Store.StudentParticipation">
+      <End Role="Student" EntitySet="StudentSet" />
+      <End Role="Participation" EntitySet="ParticipationSet" />
+    </AssociationSet>
+    <AssociationSet Name="StudentElection" Association="SPPModel.Store.StudentElection">
+      <End Role="Student" EntitySet="StudentSet" />
+      <End Role="Election" EntitySet="ElectionSet" />
+    </AssociationSet>
+    <AssociationSet Name="ParticipationProject" Association="SPPModel.Store.ParticipationProject">
+      <End Role="Participation" EntitySet="ParticipationSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ElectionProject" Association="SPPModel.Store.ElectionProject">
+      <End Role="Election" EntitySet="ElectionSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectProjectManager" Association="SPPModel.Store.ProjectProjectManager">
+      <End Role="Project" EntitySet="ProjectSet" />
+      <End Role="ProjectManager" EntitySet="ProjectManagerSet" />
+    </AssociationSet>
+    <AssociationSet Name="LinkedOrganizationProject" Association="SPPModel.Store.LinkedOrganizationProject">
+      <End Role="LinkedOrganization" EntitySet="LinkedOrganizationSet" />
+      <End Role="Project" EntitySet="ProjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProfessorParticipation" Association="SPPModel.Store.ProfessorParticipation">
+      <End Role="Professor" EntitySet="ProfessorSet" />
+      <End Role="Participation" EntitySet="ParticipationSet" />
+    </AssociationSet>
+    <AssociationSet Name="RecordDocument" Association="SPPModel.Store.RecordDocument">
+      <End Role="Record" EntitySet="RecordSet" />
+      <End Role="Document" EntitySet="DocumentSet" />
+    </AssociationSet>
+    <AssociationSet Name="ParticipationRecord" Association="SPPModel.Store.ParticipationRecord">
+      <End Role="Participation" EntitySet="ParticipationSet" />
+      <End Role="Record" EntitySet="RecordSet" />
+    </AssociationSet>
+    <AssociationSet Name="LinkedOrganizationProjectManager" Association="SPPModel.Store.LinkedOrganizationProjectManager">
+      <End Role="LinkedOrganization" EntitySet="LinkedOrganizationSet" />
+      <End Role="ProjectManager" EntitySet="ProjectManagerSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Report_inherits_Document" Association="SPPModel.Store.FK_Report_inherits_Document">
+      <End Role="Document" EntitySet="DocumentSet" />
+      <End Role="Report" EntitySet="DocumentSet_Report" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="StudentSet">
+    <Key>
+      <PropertyRef Name="idStudent" />
+    </Key>
+    <Property Name="idStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="lastName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="enrollment" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ProjectSet">
+    <Key>
+      <PropertyRef Name="idProject" />
+    </Key>
+    <Property Name="idProject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="date" Type="datetime" Nullable="true" />
+    <Property Name="activities" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="methodology" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="schedule" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="generalPurpose" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="mediateObjective" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="inmediateObjective" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="studentsRequired" Type="int" Nullable="true" />
+    <Property Name="studentsAssigned" Type="int" Nullable="true" />
+    <Property Name="status" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Participation_idParticipation" Type="int" Nullable="true" />
+    <Property Name="Election_IdElection" Type="int" Nullable="true" />
+    <Property Name="ProjectManager_IdProjectManager" Type="int" Nullable="true" />
+    <Property Name="LinkedOrganization_IdLinkedOrganization" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfessorSet">
+    <Key>
+      <PropertyRef Name="idProfessor" />
+    </Key>
+    <Property Name="idProfessor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="staffNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Participation_idParticipation" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecordSet">
+    <Key>
+      <PropertyRef Name="idRecord" />
+    </Key>
+    <Property Name="idRecord" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="totalHoursWorked" Type="float" Nullable="false" />
+    <Property Name="comments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="finalScore" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentSet">
+    <Key>
+      <PropertyRef Name="IdDocument" />
+    </Key>
+    <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="weight" Type="float" Nullable="false" />
+    <Property Name="uploadDate" Type="datetime" Nullable="false" />
+    <Property Name="Record_idRecord" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParticipationSet">
+    <Key>
+      <PropertyRef Name="idParticipation" />
+    </Key>
+    <Property Name="idParticipation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="true" />
+    <Property Name="period" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="section" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="block" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="status" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="startDate" Type="datetime" Nullable="true" />
+    <Property Name="endDate" Type="datetime" Nullable="true" />
+    <Property Name="nrc" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Student_idStudent" Type="int" Nullable="false" />
+    <Property Name="Record_idRecord" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ElectionSet">
+    <Key>
+      <PropertyRef Name="IdElection" />
+    </Key>
+    <Property Name="IdElection" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="electionLevel" Type="smallint" Nullable="false" />
+    <Property Name="period" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Student_idStudent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LinkedOrganizationSet">
+    <Key>
+      <PropertyRef Name="IdLinkedOrganization" />
+    </Key>
+    <Property Name="IdLinkedOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="adress" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ProjectManagerSet">
+    <Key>
+      <PropertyRef Name="IdProjectManager" />
+    </Key>
+    <Property Name="IdProjectManager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LinkedOrganization_IdLinkedOrganization" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentSet_Report">
+    <Key>
+      <PropertyRef Name="IdDocument" />
+    </Key>
+    <Property Name="hoursWorked" Type="float" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="startDate" Type="datetime" Nullable="false" />
+    <Property Name="endDate" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="comments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="StudentParticipation">
+    <End Role="Student" Type="SPPModel.Store.StudentSet" Multiplicity="1" />
+    <End Role="Participation" Type="SPPModel.Store.ParticipationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="idStudent" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="Student_idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentElection">
+    <End Role="Student" Type="SPPModel.Store.StudentSet" Multiplicity="1" />
+    <End Role="Election" Type="SPPModel.Store.ElectionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="idStudent" />
+      </Principal>
+      <Dependent Role="Election">
+        <PropertyRef Name="Student_idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ParticipationProject">
+    <End Role="Participation" Type="SPPModel.Store.ParticipationSet" Multiplicity="0..1" />
+    <End Role="Project" Type="SPPModel.Store.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Participation">
+        <PropertyRef Name="idParticipation" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Participation_idParticipation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ElectionProject">
+    <End Role="Election" Type="SPPModel.Store.ElectionSet" Multiplicity="0..1" />
+    <End Role="Project" Type="SPPModel.Store.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Election">
+        <PropertyRef Name="IdElection" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Election_IdElection" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectProjectManager">
+    <End Role="Project" Type="SPPModel.Store.ProjectSet" Multiplicity="*" />
+    <End Role="ProjectManager" Type="SPPModel.Store.ProjectManagerSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectManager">
+        <PropertyRef Name="IdProjectManager" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ProjectManager_IdProjectManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LinkedOrganizationProject">
+    <End Role="LinkedOrganization" Type="SPPModel.Store.LinkedOrganizationSet" Multiplicity="1" />
+    <End Role="Project" Type="SPPModel.Store.ProjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LinkedOrganization">
+        <PropertyRef Name="IdLinkedOrganization" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="LinkedOrganization_IdLinkedOrganization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfessorParticipation">
+    <End Role="Professor" Type="SPPModel.Store.ProfessorSet" Multiplicity="*" />
+    <End Role="Participation" Type="SPPModel.Store.ParticipationSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Participation">
+        <PropertyRef Name="idParticipation" />
+      </Principal>
+      <Dependent Role="Professor">
+        <PropertyRef Name="Participation_idParticipation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RecordDocument">
+    <End Role="Record" Type="SPPModel.Store.RecordSet" Multiplicity="1" />
+    <End Role="Document" Type="SPPModel.Store.DocumentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Record">
+        <PropertyRef Name="idRecord" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="Record_idRecord" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ParticipationRecord">
+    <End Role="Participation" Type="SPPModel.Store.ParticipationSet" Multiplicity="*" />
+    <End Role="Record" Type="SPPModel.Store.RecordSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Record">
+        <PropertyRef Name="idRecord" />
+      </Principal>
+      <Dependent Role="Participation">
+        <PropertyRef Name="Record_idRecord" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LinkedOrganizationProjectManager">
+    <End Role="LinkedOrganization" Type="SPPModel.Store.LinkedOrganizationSet" Multiplicity="1" />
+    <End Role="ProjectManager" Type="SPPModel.Store.ProjectManagerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LinkedOrganization">
+        <PropertyRef Name="IdLinkedOrganization" />
+      </Principal>
+      <Dependent Role="ProjectManager">
+        <PropertyRef Name="LinkedOrganization_IdLinkedOrganization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Report_inherits_Document">
+    <End Role="Document" Type="SPPModel.Store.DocumentSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Report" Type="SPPModel.Store.DocumentSet_Report" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="IdDocument" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="IdDocument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SPPEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="StudentSet" EntityType="SPPModel.Student" />
+          <EntitySet Name="ProjectSet" EntityType="SPPModel.Project" />
+          <EntitySet Name="ProfessorSet" EntityType="SPPModel.Professor" />
+          <EntitySet Name="RecordSet" EntityType="SPPModel.Record" />
+          <EntitySet Name="DocumentSet" EntityType="SPPModel.Document" />
+          <EntitySet Name="ParticipationSet" EntityType="SPPModel.Participation" />
+          <EntitySet Name="ElectionSet" EntityType="SPPModel.Election" />
+          <EntitySet Name="LinkedOrganizationSet" EntityType="SPPModel.LinkedOrganization" />
+          <EntitySet Name="ProjectManagerSet" EntityType="SPPModel.ProjectManager" />
+          <AssociationSet Name="StudentParticipation" Association="SPPModel.StudentParticipation">
+            <End Role="Student" EntitySet="StudentSet" />
+            <End Role="Participation" EntitySet="ParticipationSet" />
+          </AssociationSet>
+          <AssociationSet Name="StudentElection" Association="SPPModel.StudentElection">
+            <End Role="Student" EntitySet="StudentSet" />
+            <End Role="Election" EntitySet="ElectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="ParticipationProject" Association="SPPModel.ParticipationProject">
+            <End Role="Participation" EntitySet="ParticipationSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="ElectionProject" Association="SPPModel.ElectionProject">
+            <End Role="Election" EntitySet="ElectionSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectProjectManager" Association="SPPModel.ProjectProjectManager">
+            <End Role="Project" EntitySet="ProjectSet" />
+            <End Role="ProjectManager" EntitySet="ProjectManagerSet" />
+          </AssociationSet>
+          <AssociationSet Name="LinkedOrganizationProject" Association="SPPModel.LinkedOrganizationProject">
+            <End Role="LinkedOrganization" EntitySet="LinkedOrganizationSet" />
+            <End Role="Project" EntitySet="ProjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProfessorParticipation" Association="SPPModel.ProfessorParticipation">
+            <End Role="Professor" EntitySet="ProfessorSet" />
+            <End Role="Participation" EntitySet="ParticipationSet" />
+          </AssociationSet>
+          <AssociationSet Name="RecordDocument" Association="SPPModel.RecordDocument">
+            <End Role="Record" EntitySet="RecordSet" />
+            <End Role="Document" EntitySet="DocumentSet" />
+          </AssociationSet>
+          <AssociationSet Name="ParticipationRecord" Association="SPPModel.ParticipationRecord">
+            <End Role="Participation" EntitySet="ParticipationSet" />
+            <End Role="Record" EntitySet="RecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="LinkedOrganizationProjectManager" Association="SPPModel.LinkedOrganizationProjectManager">
+            <End Role="LinkedOrganization" EntitySet="LinkedOrganizationSet" />
+            <End Role="ProjectManager" EntitySet="ProjectManagerSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="idStudent" />
+          </Key>
+          <Property Name="idStudent" Type="Int32" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="lastName" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="email" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="password" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="phone" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="enrollment" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <NavigationProperty Name="Participation" Relationship="SPPModel.StudentParticipation" FromRole="Student" ToRole="Participation" />
+          <NavigationProperty Name="Election" Relationship="SPPModel.StudentElection" FromRole="Student" ToRole="Election" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="idProject" />
+          </Key>
+          <Property Name="idProject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="description" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="activities" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="methodology" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="schedule" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="generalPurpose" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="mediateObjective" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="inmediateObjective" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="studentsRequired" Type="Int32" />
+          <Property Name="studentsAssigned" Type="Int32" />
+          <Property Name="status" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <NavigationProperty Name="Participation" Relationship="SPPModel.ParticipationProject" FromRole="Project" ToRole="Participation" />
+          <NavigationProperty Name="Election" Relationship="SPPModel.ElectionProject" FromRole="Project" ToRole="Election" />
+          <NavigationProperty Name="ProjectManager" Relationship="SPPModel.ProjectProjectManager" FromRole="Project" ToRole="ProjectManager" />
+          <NavigationProperty Name="LinkedOrganization" Relationship="SPPModel.LinkedOrganizationProject" FromRole="Project" ToRole="LinkedOrganization" />
+        </EntityType>
+        <EntityType Name="Professor">
+          <Key>
+            <PropertyRef Name="idProfessor" />
+          </Key>
+          <Property Name="idProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="staffNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Participation" Relationship="SPPModel.ProfessorParticipation" FromRole="Professor" ToRole="Participation" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="idRecord" />
+          </Key>
+          <Property Name="idRecord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="totalHoursWorked" Type="Double" Nullable="false" />
+          <Property Name="comments" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="finalScore" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="SPPModel.RecordDocument" FromRole="Record" ToRole="Document" />
+          <NavigationProperty Name="Participation" Relationship="SPPModel.ParticipationRecord" FromRole="Record" ToRole="Participation" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="IdDocument" />
+          </Key>
+          <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="weight" Type="Double" Nullable="false" />
+          <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Record" Relationship="SPPModel.RecordDocument" FromRole="Document" ToRole="Record" />
+        </EntityType>
+        <EntityType Name="Report" BaseType="SPPModel.Document">
+          <Property Name="hoursWorked" Type="Double" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="comments" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Participation">
+          <Key>
+            <PropertyRef Name="idParticipation" />
+          </Key>
+          <Property Name="idParticipation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="period" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="section" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="block" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="status" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="nrc" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <NavigationProperty Name="Student" Relationship="SPPModel.StudentParticipation" FromRole="Participation" ToRole="Student" />
+          <NavigationProperty Name="Project" Relationship="SPPModel.ParticipationProject" FromRole="Participation" ToRole="Project" />
+          <NavigationProperty Name="Professor" Relationship="SPPModel.ProfessorParticipation" FromRole="Participation" ToRole="Professor" />
+          <NavigationProperty Name="Record" Relationship="SPPModel.ParticipationRecord" FromRole="Participation" ToRole="Record" />
+        </EntityType>
+        <EntityType Name="Election">
+          <Key>
+            <PropertyRef Name="IdElection" />
+          </Key>
+          <Property Name="IdElection" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="electionLevel" Type="Int16" Nullable="false" />
+          <Property Name="period" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Student" Relationship="SPPModel.StudentElection" FromRole="Election" ToRole="Student" />
+          <NavigationProperty Name="Project" Relationship="SPPModel.ElectionProject" FromRole="Election" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="LinkedOrganization">
+          <Key>
+            <PropertyRef Name="IdLinkedOrganization" />
+          </Key>
+          <Property Name="IdLinkedOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="adress" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <Property Name="phone" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+          <NavigationProperty Name="Project" Relationship="SPPModel.LinkedOrganizationProject" FromRole="LinkedOrganization" ToRole="Project" />
+          <NavigationProperty Name="ProjectManager" Relationship="SPPModel.LinkedOrganizationProjectManager" FromRole="LinkedOrganization" ToRole="ProjectManager" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectManager">
+          <Key>
+            <PropertyRef Name="IdProjectManager" />
+          </Key>
+          <Property Name="IdProjectManager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Project" Relationship="SPPModel.ProjectProjectManager" FromRole="ProjectManager" ToRole="Project" />
+          <NavigationProperty Name="LinkedOrganization" Relationship="SPPModel.LinkedOrganizationProjectManager" FromRole="ProjectManager" ToRole="LinkedOrganization" />
+        </EntityType>
+        <Association Name="StudentParticipation">
+          <End Type="SPPModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="SPPModel.Participation" Role="Participation" Multiplicity="*" />
+        </Association>
+        <Association Name="StudentElection">
+          <End Type="SPPModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="SPPModel.Election" Role="Election" Multiplicity="*" />
+        </Association>
+        <Association Name="ParticipationProject">
+          <End Type="SPPModel.Participation" Role="Participation" Multiplicity="0..1" />
+          <End Type="SPPModel.Project" Role="Project" Multiplicity="*" />
+        </Association>
+        <Association Name="ElectionProject">
+          <End Type="SPPModel.Election" Role="Election" Multiplicity="0..1" />
+          <End Type="SPPModel.Project" Role="Project" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjectProjectManager">
+          <End Type="SPPModel.Project" Role="Project" Multiplicity="*" />
+          <End Type="SPPModel.ProjectManager" Role="ProjectManager" Multiplicity="0..1" />
+        </Association>
+        <Association Name="LinkedOrganizationProject">
+          <End Type="SPPModel.LinkedOrganization" Role="LinkedOrganization" Multiplicity="1" />
+          <End Type="SPPModel.Project" Role="Project" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfessorParticipation">
+          <End Type="SPPModel.Professor" Role="Professor" Multiplicity="*" />
+          <End Type="SPPModel.Participation" Role="Participation" Multiplicity="1" />
+        </Association>
+        <Association Name="RecordDocument">
+          <End Type="SPPModel.Record" Role="Record" Multiplicity="1" />
+          <End Type="SPPModel.Document" Role="Document" Multiplicity="*" />
+        </Association>
+        <Association Name="ParticipationRecord">
+          <End Type="SPPModel.Participation" Role="Participation" Multiplicity="1" />
+          <End Type="SPPModel.Record" Role="Record" Multiplicity="1" />
+        </Association>
+        <Association Name="LinkedOrganizationProjectManager">
+          <End Type="SPPModel.LinkedOrganization" Role="LinkedOrganization" Multiplicity="1" />
+          <End Type="SPPModel.ProjectManager" Role="ProjectManager" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SPPModelStoreContainer" CdmEntityContainer="SPPEntities">
+    <EntitySetMapping Name="StudentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Student)">
+        <MappingFragment StoreEntitySet="StudentSet">
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="enrollment" ColumnName="enrollment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Project)">
+        <MappingFragment StoreEntitySet="ProjectSet">
+          <ScalarProperty Name="idProject" ColumnName="idProject" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="activities" ColumnName="activities" />
+          <ScalarProperty Name="methodology" ColumnName="methodology" />
+          <ScalarProperty Name="schedule" ColumnName="schedule" />
+          <ScalarProperty Name="generalPurpose" ColumnName="generalPurpose" />
+          <ScalarProperty Name="mediateObjective" ColumnName="mediateObjective" />
+          <ScalarProperty Name="inmediateObjective" ColumnName="inmediateObjective" />
+          <ScalarProperty Name="studentsRequired" ColumnName="studentsRequired" />
+          <ScalarProperty Name="studentsAssigned" ColumnName="studentsAssigned" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfessorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Professor)">
+        <MappingFragment StoreEntitySet="ProfessorSet">
+          <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="staffNumber" ColumnName="staffNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecordSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Record)">
+        <MappingFragment StoreEntitySet="RecordSet">
+          <ScalarProperty Name="idRecord" ColumnName="idRecord" />
+          <ScalarProperty Name="totalHoursWorked" ColumnName="totalHoursWorked" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="finalScore" ColumnName="finalScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Document)">
+        <MappingFragment StoreEntitySet="DocumentSet">
+          <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Report)">
+        <MappingFragment StoreEntitySet="DocumentSet_Report">
+          <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+          <ScalarProperty Name="hoursWorked" ColumnName="hoursWorked" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParticipationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Participation)">
+        <MappingFragment StoreEntitySet="ParticipationSet">
+          <ScalarProperty Name="idParticipation" ColumnName="idParticipation" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="block" ColumnName="block" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="nrc" ColumnName="nrc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ElectionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.Election)">
+        <MappingFragment StoreEntitySet="ElectionSet">
+          <ScalarProperty Name="IdElection" ColumnName="IdElection" />
+          <ScalarProperty Name="electionLevel" ColumnName="electionLevel" />
+          <ScalarProperty Name="period" ColumnName="period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkedOrganizationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.LinkedOrganization)">
+        <MappingFragment StoreEntitySet="LinkedOrganizationSet">
+          <ScalarProperty Name="IdLinkedOrganization" ColumnName="IdLinkedOrganization" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectManagerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(SPPModel.ProjectManager)">
+        <MappingFragment StoreEntitySet="ProjectManagerSet">
+          <ScalarProperty Name="IdProjectManager" ColumnName="IdProjectManager" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="StudentParticipation" TypeName="SPPModel.StudentParticipation" StoreEntitySet="ParticipationSet">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="idStudent" ColumnName="Student_idStudent" />
+      </EndProperty>
+      <EndProperty Name="Participation">
+        <ScalarProperty Name="idParticipation" ColumnName="idParticipation" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StudentElection" TypeName="SPPModel.StudentElection" StoreEntitySet="ElectionSet">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="idStudent" ColumnName="Student_idStudent" />
+      </EndProperty>
+      <EndProperty Name="Election">
+        <ScalarProperty Name="IdElection" ColumnName="IdElection" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ParticipationProject" TypeName="SPPModel.ParticipationProject" StoreEntitySet="ProjectSet">
+      <EndProperty Name="Participation">
+        <ScalarProperty Name="idParticipation" ColumnName="Participation_idParticipation" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="idProject" ColumnName="idProject" />
+      </EndProperty>
+      <Condition ColumnName="Participation_idParticipation" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ElectionProject" TypeName="SPPModel.ElectionProject" StoreEntitySet="ProjectSet">
+      <EndProperty Name="Election">
+        <ScalarProperty Name="IdElection" ColumnName="Election_IdElection" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="idProject" ColumnName="idProject" />
+      </EndProperty>
+      <Condition ColumnName="Election_IdElection" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProjectProjectManager" TypeName="SPPModel.ProjectProjectManager" StoreEntitySet="ProjectSet">
+      <EndProperty Name="ProjectManager">
+        <ScalarProperty Name="IdProjectManager" ColumnName="ProjectManager_IdProjectManager" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="idProject" ColumnName="idProject" />
+      </EndProperty>
+      <Condition ColumnName="ProjectManager_IdProjectManager" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LinkedOrganizationProject" TypeName="SPPModel.LinkedOrganizationProject" StoreEntitySet="ProjectSet">
+      <EndProperty Name="LinkedOrganization">
+        <ScalarProperty Name="IdLinkedOrganization" ColumnName="LinkedOrganization_IdLinkedOrganization" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="idProject" ColumnName="idProject" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfessorParticipation" TypeName="SPPModel.ProfessorParticipation" StoreEntitySet="ProfessorSet">
+      <EndProperty Name="Participation">
+        <ScalarProperty Name="idParticipation" ColumnName="Participation_idParticipation" />
+      </EndProperty>
+      <EndProperty Name="Professor">
+        <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RecordDocument" TypeName="SPPModel.RecordDocument" StoreEntitySet="DocumentSet">
+      <EndProperty Name="Record">
+        <ScalarProperty Name="idRecord" ColumnName="Record_idRecord" />
+      </EndProperty>
+      <EndProperty Name="Document">
+        <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ParticipationRecord" TypeName="SPPModel.ParticipationRecord" StoreEntitySet="ParticipationSet">
+      <EndProperty Name="Record">
+        <ScalarProperty Name="idRecord" ColumnName="Record_idRecord" />
+      </EndProperty>
+      <EndProperty Name="Participation">
+        <ScalarProperty Name="idParticipation" ColumnName="idParticipation" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LinkedOrganizationProjectManager" TypeName="SPPModel.LinkedOrganizationProjectManager" StoreEntitySet="ProjectManagerSet">
+      <EndProperty Name="LinkedOrganization">
+        <ScalarProperty Name="IdLinkedOrganization" ColumnName="LinkedOrganization_IdLinkedOrganization" />
+      </EndProperty>
+      <EndProperty Name="ProjectManager">
+        <ScalarProperty Name="IdProjectManager" ColumnName="IdProjectManager" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="SPP.GUI.DeleteProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPP.GUI"
+        mc:Ignorable="d"
+        Title="DeleteProject" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" ></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Fill="#FF1B2C63"/>
+        <Image  HorizontalAlignment="Left" Height="100" Margin="37,295,0,0" VerticalAlignment="Top" Width="100" Source="/Images/LogoUV.png" />
+
+        <ListView x:Name="ListViewProject" Grid.Column="1"
+                  Width="590" Height="280"
+                  HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding name}"
+                                  
+                                    Header="Nombre del proyecto" />
+                    <GridViewColumn Header="Eliminar">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <Button Content="Eliminar"
+                                        Foreground="White"
+                                        Background="red" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid  Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Eliminar Proyecto"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="24" FontWeight="Bold"/>
+            <Button x:Name="ButtonReturn" Grid.Row="2" FontSize="16"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Content="Regresar" Click="ReturnButtonClicked"
+                    Height="35"
+                    Width="100"
+                    Foreground="White"
+                    Background="#261aa3" />
+        </Grid>
+    </Grid>
+</Window>

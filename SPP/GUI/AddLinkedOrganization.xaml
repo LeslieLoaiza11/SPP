@@ -1,0 +1,25 @@
+﻿<Window x:Class="SPP.GUI.AddLinkedOrganization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPP.GUI"
+        mc:Ignorable="d"
+        Title="Agregar organización vinculada" Height="450" Width="800"
+        Closing="Window_Closing">
+    
+    <Grid Background="White">
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="327,99,0,0" VerticalAlignment="Top" Foreground="#FF707070"/>
+        <TextBox Name="TxtBoxName" HorizontalAlignment="Left" Height="23" Margin="327,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="301"/>
+        <Label Content="Direccción " HorizontalAlignment="Left" Margin="327,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="7.68,0.315" Foreground="#FF707070"/>
+        <TextBox Name="TxtBoxAddress" HorizontalAlignment="Left" Height="22" Margin="327,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="301"/>
+        <Label Content="Teléfono" HorizontalAlignment="Left" Margin="327,255,0,0" VerticalAlignment="Top" Foreground="#FF707070"/>
+        <TextBox Name="TxtBoxPhone" HorizontalAlignment="Left" Height="23" Margin="327,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="301"/>
+        <Label Content="Agregar organización vinculada" HorizontalAlignment="Left" Margin="327,51,0,0" VerticalAlignment="Top" Width="301" FontWeight="Bold" Background="White" FontSize="18" Foreground="#FF707070"/>
+        <Button Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="518,336,0,0" VerticalAlignment="Top" Width="110" Background="#FF1BC623" Foreground="White" Height="32" Click="Button_Click"/>
+        <Button Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="327,336,0,0" VerticalAlignment="Top" Width="110" Height="32" Background="#FFC50000" Foreground="White" Click="btnCancelar_Click"/>
+        <Grid HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="180" Background="#FF1B2C63">
+            <Image HorizontalAlignment="Left" Height="100" Margin="37,295,0,0" VerticalAlignment="Top" Width="100" Source="LogoUV.png"/>
+        </Grid>
+    </Grid>
+</Window>
