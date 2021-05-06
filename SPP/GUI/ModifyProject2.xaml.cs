@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SPP.DBQuerys;
+using System.ComponentModel;
 
 namespace SPP.GUI
 {
@@ -23,6 +26,11 @@ namespace SPP.GUI
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Environment.Exit(1);
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)

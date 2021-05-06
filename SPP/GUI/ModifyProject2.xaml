@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPP.GUI"
         mc:Ignorable="d"
-        Title="ModifyProject2" Height="500" Width="800"
+        Title="Modificar proyecto" Height="500" Width="800"
         Closing="Window_Closing">
     <Grid Background="White">
         <Label Content="Proyecto" HorizontalAlignment="Left" Margin="431,10,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" Background="White" Foreground="#FF707070" FontSize="14"/>
