@@ -23,10 +23,12 @@ namespace SPP.GUI
     public partial class ConsultFileCoordinator2 : Window
     {
         public ObservableCollection<FileTable> Reportes { get; } = new ObservableCollection<FileTable>();
-        public ConsultFileCoordinator2()
+        public int idExpediente;
+        public ConsultFileCoordinator2(int idExpediente)
         {
             InitializeComponent();
             DataContext = this;
+            this.idExpediente = idExpediente;
             GetReports();
         }
 
